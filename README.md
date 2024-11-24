@@ -4,8 +4,8 @@
 
 PosMate is a cashier application designed to help you manage product stock, purchases, and various other business transactions. This app comes with features such as user registration and login, product management, product logs, sales tracking, and receipt printing. With PosMate, managing your store becomes easier and more efficient.
 
-🚀 Technologies Used
-Frontend: HTML5, CSS3, JavaScript, Bootstrap, CoreUI
-Backend: PHP, Laravel
-Database: MySQL
-Icons: FontAwesome
+🚀 Technologies Used:
+- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap, CoreUI
+- **Backend**: PHP, Laravel
+- **Database**: MySQL
+- **Icons**: FontAwesome

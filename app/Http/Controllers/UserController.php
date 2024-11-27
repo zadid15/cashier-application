@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -106,6 +107,33 @@ class UserController extends Controller
         }
     }
 
+    public function redirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function callback()
+    {
+        $userFromGoogle = Socialite::driver('google')->user();
+        $userFromDb = User::where('google_id', $userFromGoogle->getId())->first();
+
+        if(!$userFromDb){
+            $userFromDb = new User();
+            $userFromDb->email = $userFromGoogle->getEmail();
+            $userFromDb->google_id = $userFromGoogle->getId();
+            $userFromDb->name = $userFromGoogle->getName();
+
+            $userFromDb->save();
+
+            auth('web')->login($userFromDb);
+            session()->regenerate();
+            return redirect('/dashboard');
+        }
+        
+        auth('web')->login($userFromDb);
+        session()->regenerate();
+        return redirect('/dashboard');
+    }
     public function logout()
     {
         Auth::logout();

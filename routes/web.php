@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/redirect', [UserController::class, 'redirect'])->name('redirect')->middleware('guest');
+Route::get('/callback', [UserController::class, 'callback'])->name('callback')->middleware('guest');
 
 Route::get('/', [UserController::class, 'login'])->name('login');
 Route::get('/register', [UserController::class, 'register'])->name('register');

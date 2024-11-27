@@ -65,7 +65,7 @@
                             <i class="fab fa-facebook mr-2"></i>
                             Daftar menggunakan Facebook
                         </a>
-                        <a href="#" class="btn btn-block btn-danger">
+                        <a href="{{ route('redirect') }}" class="btn btn-block btn-danger">
                             <i class="fab fa-google-plus mr-2"></i>
                             Daftar menggunakan Google+
                         </a>

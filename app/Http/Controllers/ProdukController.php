@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\LogStok;
 use App\Models\Produk;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Milon\Barcode\Facades\DNS1DFacade;
 
 class ProdukController extends Controller
 {
@@ -176,5 +178,31 @@ class ProdukController extends Controller
         ->select('log_stoks.JumlahProduk', 'log_stoks.created_at', 'produks.NamaProduk', 'users.name')->get();
         return view('admin.produk.logproduk', compact('title', 'subtitle', 'produks'));
 
+    }
+
+    public function cetakLabel(Request $request)
+    {
+        $id_produk = $request->id_produk;
+        $barcodes = [];
+
+        if (is_array($id_produk)) {
+            foreach ($id_produk as $id) {
+                $id = (string) $id;
+                $harga = Produk::find($id)->Harga;
+                $barcode = DNS1DFacade::getBarcodeHTML($id, 'C128');
+                $barcodes[] = ['barcode' => $barcode, 'harga' => $harga];
+            }
+        } else {
+            $id_produk = (string) $id_produk;
+            $harga = Produk::find($id_produk)->Harga;
+            $barcode = DNS1DFacade::getBarcodeHTML($id_produk, 'C128');
+            $barcodes[] = ['barcode' => $barcode, 'harga' => $harga];
+        }
+        $pdf = Pdf::loadView('admin.produk.cetaklabel', compact('barcodes'));
+
+        $file_path = storage_path('app/public/barcodes.pdf');
+        $pdf->save($file_path);
+
+        return response()->json(['url' => asset('storage/barcodes.pdf')]);
     }
 }

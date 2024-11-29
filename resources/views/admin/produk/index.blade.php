@@ -82,7 +82,7 @@
                                     <tr>
                                         <td>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="{{ $produk->id }}"
+                                                <input class="form-check-input" name="id_produk[]" type="checkbox" value="{{ $produk->id }}"
                                                     id="id_produk_label">
                                             </div>
                                         </td>
@@ -242,5 +242,34 @@
                 confirmButtonText: 'OK'
             });
         @endif
+    </script>
+
+    <script>
+        $(document).on('click', '#btnCetakLabel', function(){
+            let id_produk = [];
+            $('input[name="id_produk[]"]:checked').each(function(){
+                id_produk.push($(this).val());
+            });
+            $.ajax({
+                type: "POST",
+                url: "{{ route('produk.cetakLabel') }}",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    id_produk: id_produk
+                },
+                dataType: "json",
+                success: function(data) {
+                    window.open(data.url, '_blank');
+                },
+                error: function(data) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: data.message,
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            })
+        })
     </script>
 @endsection

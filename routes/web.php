@@ -20,5 +20,7 @@ Route::get('/dashboard', function(){
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function(){
+    Route::put('produk/edit/{id}/tambahStok', [ProdukController::class, 'tambahStok'])->name('produk.tambahStok');
+    Route::get('produk/logproduk', [ProdukController::class, 'logproduk'])->name('produk.logproduk');
     Route::resource('produk', ProdukController::class);
 });

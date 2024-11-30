@@ -227,7 +227,7 @@
     <script>
         @if (session('success'))
             Swal.fire({
-                title: 'Berhasil !',
+                title: 'Berhasil!',
                 text: "{{ session('success') }}",
                 icon: 'success',
                 confirmButtonText: 'OK'
@@ -236,7 +236,7 @@
 
         @if (session('error'))
             Swal.fire({
-                title: 'Gagal !',
+                title: 'Gagal!',
                 text: "{{ session('error') }}",
                 icon: 'error',
                 confirmButtonText: 'OK'

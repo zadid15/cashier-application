@@ -79,7 +79,7 @@
                     success: function(data) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Berhasil !',
+                            title: 'Berhasil!',
                             text: data.message,
                             confirmButtonText: 'OK'
                         }).then((result) => {
@@ -93,7 +93,7 @@
                         if (data.status == 422) {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Gagal !',
+                                title: 'Gagal!',
                                 text: data.responseJSON.message,
                                 confirmButtonText: 'OK'
                             })

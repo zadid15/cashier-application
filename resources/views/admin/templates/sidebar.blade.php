@@ -54,6 +54,15 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('penjualan.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>
+                Penjualan
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('produk.logproduk') }}" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>

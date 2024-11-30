@@ -32,7 +32,7 @@
             <div class="container-fluid">
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Formulir Tambah {{ $title }}</h3>
+                        <h3 class="card-title">Form Tambah {{ $title }} Baru</h3>
                         <a href="{{ route('produk.index') }}" class="btn btn-sm btn-warning float-right" style="color: black;"><i class="nav-icon fas fa-arrow-left mr-2"></i>Kembali</a>
                     </div>
                     <form id="form-create-produk" method="post">
@@ -75,7 +75,7 @@
                     success: function(data) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Berhasil !',
+                            title: 'Berhasil!',
                             text: data.message,
                             confirmButtonText: 'OK'
                         })

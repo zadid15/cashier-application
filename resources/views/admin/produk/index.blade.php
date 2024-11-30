@@ -12,7 +12,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Stok
+                    <h5 class="modal-title" id="staticBackdropLabel">Form Tambah Stok
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -22,10 +22,10 @@
                     <div class="modal-body">
                         <input type="hidden" name="id_produk" id="id_produk">
                         <label for="">Jumlah Stok</label>
-                        <input type="number" name="Stok" id="nilaiTambahStok" class="form-control" required>
+                        <input type="number" name="Stok" id="nilaiTambahStok" class="form-control" required placeholder="Jumlah Stok yang Ingin Ditambahkan">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Tambah Stok</button>
                     </div>
                 </form>

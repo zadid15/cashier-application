@@ -63,7 +63,7 @@
                         <a href="{{ route('penjualan.index') }}" class="btn btn-sm btn-warning float-right"
                             style="color: black;"><i class="nav-icon fas fa-arrow-left mr-2"></i>Kembali</a>
                     </div>
-                    <form action="{{ route('penjualan.store') }}" method="POST">
+                    <form action="{{ route('penjualan.store') }}" method="POST" id="formPenjualan">
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 @csrf
@@ -112,13 +112,14 @@
                                             Total Harga
                                         </td>
                                         <td colspan="2">
-                                            <input type="text" name="total" id="total" class="form-control" readonly>
+                                            <input type="text" name="total" id="total" class="form-control"
+                                                readonly>
                                         </td>
                                     </tr>
                                 </tfooter>
                             </table>
                             <button type="button" class="btn btn-primary mt-2" onclick="tambahProduk()"><i
-                                    class="nav-icon fas fa-plus mr-1"></i></button>
+                                    class="nav-icon fas fa-plus"></i></button>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary"><i
@@ -212,11 +213,50 @@
         function hitungTotalAkhir() {
             let total = 0;
 
-            $('.totalHarga').each(function(){
+            $('.totalHarga').each(function() {
                 total += parseFloat($(this).val()) || 0;
             });
 
             $('#total').val(total);
         }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#formPenjualan').on('submit', function(e) {
+                e.preventDefault(); // Mencegah form dari submit default
+
+                const form = $(this);
+                const url = form.attr('action');
+                const method = form.attr('method');
+
+                // Kirim form menggunakan AJAX
+                $.ajax({
+                    url: url,
+                    method: method,
+                    data: form.serialize(), // Serialisasi form
+                    success: function(response) {
+                        // Menampilkan SweetAlert ketika berhasil
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil!',
+                            text: 'Data Penjualan berhasil disimpan.',
+                        }).then(() => {
+                            // Opsional: redirect atau refresh setelah berhasil
+                            window.location.href = "{{ route('penjualan.index') }}";
+                        });
+                    },
+                    error: function(xhr) {
+                        // Menampilkan SweetAlert ketika gagal
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: xhr.responseJSON.message ||
+                                'Terjadi kesalahan saat menyimpan data.',
+                        });
+                    }
+                });
+            });
+        });
     </script>
 @endsection

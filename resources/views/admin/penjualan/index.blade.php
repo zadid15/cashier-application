@@ -5,33 +5,6 @@
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
-    <!-- Modal -->
-    <div class="modal fade" id="modalTambahStok" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Stok
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="formTambahStok" method="POST">
-                    <div class="modal-body">
-                        <input type="hidden" name="id_produk" id="id_produk">
-                        <label for="">Jumlah Stok</label>
-                        <input type="number" name="Stok" id="nilaiTambahStok" class="form-control" required>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Tambah Stok</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('content')
@@ -61,7 +34,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Daftar {{ $title }}</h3>
                         <a href="{{ route('penjualan.create') }}" class="btn btn-sm btn-primary float-right"><i
-                                class="nav-icon fas fa-plus mr-2"></i>Tambah</a>
+                            class="nav-icon fas fa-plus mr-2"></i>Tambah</a>
                     </div>
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -69,8 +42,8 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Tanggal Penjualan</th>
-                                    <th>Harga</th>
-                                    <th>Penjual</th>
+                                    <th>Total</th>
+                                    <th>Kasir</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -78,12 +51,24 @@
                                 @foreach ($penjualans as $penjualan)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $penjualan->TanggalPenjualan }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($penjualan->created_at)->setTimezone('Asia/Jakarta')->locale('id')->translatedFormat('l, d F Y - H:i') }}</td>
                                         <td>{{ rupiah($penjualan->TotalHarga) }}</td>
                                         <td>{{ $penjualan->name }}</td>
                                         <td>
-                                            Aksi
-                                        </td>
+                                            @if ($penjualan->StatusBayar == 'Lunas')
+                                                <a href="{{ route('penjualan.nota', $penjualan->id) }}" class="btn btn-success" target="_blank"><i class="nav-icon fas fa-receipt mr-2"></i> Nota</a>
+                                            @else
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="nav-icon fas fa-wallet mr-2"></i>Bayar
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="{{ route('penjualan.bayarCash', $penjualan->id) }}">Cash</a>
+                                                        <a class="dropdown-item" href="#">Transfer/QRIS</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            @endif
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -39,10 +39,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Produk</th>
-                                    <th>Jumlah Penambahan Stok</th>
-                                    <th>Nama Pengubah</th>
-                                    <th>Tanggal Diubah</th>
+                                    <th>Produk</th>
+                                    <th>Penambahan Stok</th>
+                                    <th>Pengubah</th>
+                                    <th>Tanggal</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,7 +52,7 @@
                                         <td>{{ $produk->NamaProduk }}</td>
                                         <td>{{ $produk->JumlahProduk }}</td>
                                         <td>{{ $produk->name }}</td>
-                                        <td>{{ $produk->created_at->translatedFormat('d F Y,  H:i') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($produk->created_at)->setTimezone('Asia/Jakarta')->locale('id')->translatedFormat('l, d F Y - H:i') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

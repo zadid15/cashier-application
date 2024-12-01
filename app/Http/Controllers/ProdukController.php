@@ -21,7 +21,8 @@ class ProdukController extends Controller
         $subtitle = 'Index';
         $produkBaru = Produk::where('created_at', '>=', Carbon::now()->subMinute())->exists();
         $produks = Produk::all();
-        return view('admin.produk.index', compact('title', 'subtitle',  'produks'));
+
+        return view('admin.produk.index',  compact('title', 'subtitle',  'produks'));
     }
 
     /**
@@ -66,10 +67,11 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
+        $judulHalaman = 'Edit Produk | POSMate';
         $title = 'Produk';
         $subtitle = 'Edit';
         $produk = Produk::find($id);
-        return view('admin.produk.edit', compact('title', 'subtitle', 'produk'));
+        return view('admin.produk.edit', compact('title', 'subtitle', 'produk', 'judulHalaman'));
     }
 
     /**

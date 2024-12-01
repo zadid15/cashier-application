@@ -1,4 +1,4 @@
-<x-header></x-header>
+<x-header />
 
     <!-- DataTables -->
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-<x-sidebar></x-sidebar>
+<x-sidebar />
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -107,7 +107,7 @@
         <!-- /.content -->
     </div>
 
-<x-footer></x-footer>    
+<x-footer />    
 
     <script>
         $(document).ready(function() {

@@ -1,38 +1,11 @@
-<x-header></x-header>
+<x-header />
 
     <!-- DataTables -->
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalTambahStok" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Stok
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="formTambahStok" method="POST">
-                    <div class="modal-body">
-                        <input type="hidden" name="id_produk" id="id_produk">
-                        <label for="">Jumlah Stok</label>
-                        <input type="number" name="Stok" id="nilaiTambahStok" class="form-control" required>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Tambah Stok</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-<x-sidebar></x-sidebar>
+<x-sidebar />
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -131,7 +104,7 @@
         <!-- /.content -->
     </div>
 
-<x-footer></x-footer>
+<x-footer />
 
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('') }}plugins/datatables/jquery.dataTables.min.js"></script>

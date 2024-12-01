@@ -1,5 +1,5 @@
-<x-header></x-header>
-<x-sidebar></x-sidebar>
+<x-header />
+<x-sidebar />
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
@@ -42,7 +42,7 @@
     </section>
 </div>
 
-<x-footer></x-footer>
+<x-footer />
 
 <script>
 $(document).ready(function() {
@@ -64,7 +64,7 @@ $(document).ready(function() {
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "{{ route('produk.index') }}"; // Redirect ke halaman index profile
+                        window.location.href = "{{ route('dashboard') }}"; // Redirect ke halaman index profile
                     }
                 });
             },

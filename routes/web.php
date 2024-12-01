@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Rute untuk mengupdate profil
     Route::put('profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
     
-    Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
-    Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');
 });
+
+Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
+Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');

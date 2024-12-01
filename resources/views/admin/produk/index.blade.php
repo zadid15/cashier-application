@@ -1,6 +1,5 @@
-@extends('admin.templates.master')
+<x-header></x-header>
 
-@section('css')
     <!-- DataTables -->
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -22,19 +21,20 @@
                     <div class="modal-body">
                         <input type="hidden" name="id_produk" id="id_produk">
                         <label for="">Jumlah Stok</label>
-                        <input type="number" name="Stok" id="nilaiTambahStok" class="form-control" required placeholder="Jumlah Stok yang Ingin Ditambahkan">
+                        <input type="number" name="Stok" id="nilaiTambahStok" class="form-control" required
+                            placeholder="Jumlah Stok yang Ingin Ditambahkan">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Tambah Stok</button>
+                        <button type="submit" id="submitCetakLabel" class="btn btn-primary">Tambah Stok</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-@endsection
 
-@section('content')
+<x-sidebar></x-sidebar>
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -82,8 +82,8 @@
                                     <tr>
                                         <td>
                                             <div class="form-check">
-                                                <input class="form-check-input" name="id_produk[]" type="checkbox" value="{{ $produk->id }}"
-                                                    id="id_produk_label">
+                                                <input class="form-check-input" name="id_produk[]" type="checkbox"
+                                                    value="{{ $produk->id }}" id="id_produk_label">
                                             </div>
                                         </td>
                                         <td>{{ $loop->iteration }}</td>
@@ -119,9 +119,9 @@
         </section>
         <!-- /.content -->
     </div>
-@endsection
 
-@section('js')
+<x-footer></x-footer>
+
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('') }}plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('') }}plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -245,9 +245,9 @@
     </script>
 
     <script>
-        $(document).on('click', '#btnCetakLabel', function(){
+        $(document).on('click', '#btnCetakLabel', function() {
             let id_produk = [];
-            $('input[name="id_produk[]"]:checked').each(function(){
+            $('input[name="id_produk[]"]:checked').each(function() {
                 id_produk.push($(this).val());
             });
             $.ajax({
@@ -264,12 +264,11 @@
                 error: function(data) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Gagal!',
-                        text: data.message,
+                        title: 'Ooop...',
+                        text: 'Mohon centang minimal satu produk terlebih dahulu!',
                         confirmButtonText: 'Ok'
                     })
                 }
             })
         })
     </script>
-@endsection

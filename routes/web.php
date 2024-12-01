@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/redirect', [UserController::class, 'redirect'])->name('redirect')->middleware('guest');
-Route::get('/callback', [UserController::class, 'callback'])->name('callback')->middleware('guest');
 
 Route::get('/', [UserController::class, 'login'])->name('login');
 Route::get('/register', [UserController::class, 'register'])->name('register');
@@ -14,13 +13,13 @@ Route::post('/register', [UserController::class, 'registerStore'])->name('regist
 Route::post('/login', [UserController::class, 'loginCheck'])->name('login.check');
 Route::resource('users', UserController::class);
 
-Route::get('/dashboard', function(){
+Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function () {
     Route::post('produk/cetak/label', [ProdukController::class, 'cetakLabel'])->name('produk.cetakLabel');
     Route::put('produk/edit/{id}/tambahStok', [ProdukController::class, 'tambahStok'])->name('produk.tambahStok');
     Route::get('produk/logproduk', [ProdukController::class, 'logproduk'])->name('produk.logproduk');
@@ -29,4 +28,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('penjualan/bayarCash/{id}', [PenjualanController::class, 'bayarCash'])->name('penjualan.bayarCash');
     Route::post('penjualan/bayarCash', [PenjualanController::class, 'bayarCashStore'])->name('penjualan.bayarCashStore');
     Route::get('penjualan/nota/{id}', [PenjualanController::class, 'nota'])->name('penjualan.nota');
+
+    // Rute untuk halaman edit profil
+    Route::get('profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+
+    // Rute untuk mengupdate profil
+    Route::put('profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    
+    Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
+    Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');
 });

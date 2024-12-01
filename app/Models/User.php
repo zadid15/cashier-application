@@ -19,10 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'google_id',
         'email',
         'password',
         'role',
+        'profile_picture',
     ];
 
     /**
@@ -46,5 +46,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function socialite()
+    {
+        return $this->hasMany(Socialite::class);
     }
 }

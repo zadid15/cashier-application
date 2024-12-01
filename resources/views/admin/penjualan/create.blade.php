@@ -1,6 +1,5 @@
-@extends('admin.templates.master')
+<x-header></x-header>
 
-@section('css')
     <!-- DataTables -->
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -32,9 +31,9 @@
             </div>
         </div>
     </div>
-@endsection
 
-@section('content')
+<x-sidebar></x-sidebar>
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -131,9 +130,9 @@
         </section>
         <!-- /.content -->
     </div>
-@endsection
 
-@section('js')
+<x-footer></x-footer>
+
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('') }}plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('') }}plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -259,4 +258,3 @@
             });
         });
     </script>
-@endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LogStok;
 use App\Models\Produk;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Milon\Barcode\Facades\DNS1DFacade;
@@ -18,8 +19,9 @@ class ProdukController extends Controller
     {
         $title = 'Produk';
         $subtitle = 'Index';
+        $produkBaru = Produk::where('created_at', '>=', Carbon::now()->subMinute())->exists();
         $produks = Produk::all();
-        return view('admin.produk.index', compact('title', 'subtitle', 'produks'));
+        return view('admin.produk.index', compact('title', 'subtitle',  'produks'));
     }
 
     /**

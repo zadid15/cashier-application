@@ -61,13 +61,14 @@
                     </form>
 
                     <div class="social-auth-links text-center">
-                        <a href="#" class="btn btn-block btn-primary">
-                            <i class="fab fa-facebook mr-2"></i>
-                            Daftar menggunakan Facebook
+                        <a href="{{ route('socialite.redirect', 'facebook') }}" class="btn btn-block btn-primary">
+                            <i class="fab fa-facebook mr-2"></i> Masuk menggunakan Facebook
                         </a>
-                        <a href="{{ route('redirect') }}" class="btn btn-block btn-danger">
-                            <i class="fab fa-google-plus mr-2"></i>
-                            Daftar menggunakan Google+
+                        <a href="{{ route('socialite.redirect', 'google') }}" class="btn btn-block btn-danger">
+                            <i class="fab fa-google-plus mr-2"></i> Masuk menggunakan Google+
+                        </a>
+                        <a href="{{ route('socialite.redirect', 'github') }}" class="btn btn-block btn-dark">
+                            <i class="fab fa-github mr-2"></i> Masuk menggunakan GitHub
                         </a>
                     </div>
                     <a href="{{ route('login') }}" class="text-center">Saya sudah memiliki akun.</a>

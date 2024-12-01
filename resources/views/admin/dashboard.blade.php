@@ -1,6 +1,5 @@
-@extends('admin.templates.master')
-
-@section('content')
+<x-header></x-header>
+<x-sidebar></x-sidebar>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -26,7 +25,7 @@
         <!-- Selamat Datang Section -->
         <div class="card mb-4">
           <div class="card-body">
-              <h3 class="card-title">Selamat Datang, {{ auth('web')->user()->name }}!</h3>
+              <h3 class="card-title">Selamat Datang, {{ Auth::user()->name }}!</h3>
               <p class="card-text">Anda telah masuk ke aplikasi <strong>POSMate</strong>. Berikut adalah ringkasan aktivitas Anda hari ini.</p>
           </div>
       </div>
@@ -611,4 +610,4 @@
     </section>
     <!-- /.content -->
   </div>
-@endsection
+<x-footer></x-footer>
